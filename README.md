@@ -8,6 +8,13 @@ Since Gradle is already used as the build system for the Android app it is used 
 
 All server code is located in the `server` directory.
 
+## Database
+On first setup run the `dbCreate` task to create Postgres Docker container for development. 
+You can use the `dbDestroy` task to delete this Docker container.
+
+After first setup you can use the `dbStart` and `dbStop` task to manage the Postgres Docker 
+container.
+
 ## Dependency Vendoring
 To vendor dependencies run the `goVendor` task.
 

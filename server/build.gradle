@@ -21,3 +21,28 @@ task run(type: com.github.blindpirate.gogradle.Go) {
         run "${exPath}"
     }
 }
+
+// Database container
+def dbName = "snap-but-doesnt-suck-postgres"
+task dbCreate(type: Exec) {
+    commandLine "docker", "run",
+            "--name", "${dbName}",
+            "-e", "POSTGRES_USER=username",
+            "-e", "POSTGRES_PASSWORD=password",
+            "-e", "POSTGRES_DB=snap-but-doesnt-suck",
+            "-p", "5432:5432",
+            "-d",
+            "postgres"
+}
+
+task dbDestroy(type: Exec) {
+    commandLine "docker", "rm", "${dbName}"
+}
+
+task dbStart (type: Exec) {
+    commandLine "docker", "start", "${dbName}"
+}
+
+task dbStop(type: Exec) {
+    commandLine "docker", "stop", "${dbName}"
+}

@@ -6,8 +6,8 @@ import (
     "github.com/jinzhu/gorm"
     _ "github.com/jinzhu/gorm/dialects/postgres"
 
-    "./models"
-    tables "./models/db"
+    "github.com/Noah-Huppert/snap-but-doesnt-suck/models"
+    tables "github.com/Noah-Huppert/snap-but-doesnt-suck/models/db"
 )
 
 func main() {
