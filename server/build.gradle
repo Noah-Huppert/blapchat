@@ -5,6 +5,7 @@ plugins {
 dependencies {
     golang {
         build 'github.com/jinzhu/gorm'
+        build 'github.com/kurin/blazer/b2'
     }
 }
 
