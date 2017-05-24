@@ -1,0 +1,22 @@
+plugins {
+    id 'com.github.blindpirate.gogradle' version '0.5.2'
+}
+
+dependencies {
+    golang {
+        build 'github.com/jinzhu/gorm'
+    }
+}
+
+golang {
+    packagePath = 'github.com/Noah-Huppert/snap-but-doesnt-suck'
+}
+
+task run(type: com.github.blindpirate.gogradle.Go) {
+    dependsOn goBuild
+    doLast {
+        def exPath = './.gogradle/${GOOS}_${GOARCH}_${PROJECT_NAME}${GOEXE}'
+        run "chmod +x ${exPath}"
+        run "${exPath}"
+    }
+}

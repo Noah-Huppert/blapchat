@@ -1,0 +1,14 @@
+# Jetbrains
+*.iml
+.idea
+build
+captures
+local.properties
+.externalNativeBuild
+
+# Gradle
+.gradle
+.gogradle
+
+# Go
+server/vendor
