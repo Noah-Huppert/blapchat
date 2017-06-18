@@ -1,4 +1,4 @@
-# Snap But Doesnt Suck
+# Snap But Doesn't Suck
 SnapChat but it doesn't suck.  
 
 Features include:
