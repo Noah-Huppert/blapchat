@@ -1,5 +1,10 @@
 # Snap But Doesnt Suck
-SnapChat but it doesn't suck.
+SnapChat but it doesn't suck.  
+
+Features include:
+- UI responds to taps in under 2 seconds
+- Does not use excessive amounts of RAM
+- Does not drain your battery
 
 # Server
 The Server component runs the back end for the Snap But Doesnt Suck app.
@@ -9,7 +14,7 @@ Since Gradle is already used as the build system for the Android app it is used 
 All server code is located in the `server` directory.
 
 ## Database
-On first setup run the `dbCreate` task to create Postgres Docker container for development. 
+On first setup run the `dbCreate` task to create a Postgres Docker container for development. 
 You can use the `dbDestroy` task to delete this Docker container.
 
 After first setup you can use the `dbStart` and `dbStop` task to manage the Postgres Docker 
