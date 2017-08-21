@@ -12,3 +12,6 @@ local.properties
 
 # Go
 server/vendor
+
+# App
+server.config.json
