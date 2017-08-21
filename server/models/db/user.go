@@ -7,30 +7,11 @@ import (
 type User struct {
     gorm.Model
 
+    FirstName string `gorm:"not null"`
+    LastName string `gorm:"not null"`
+
     Username string
+    ProfilePictureId uint `gorm:"not null"`
 
-    FirstName string
-    LastName string
-
-    Email string
-    EmailVerified bool
-
-    BzProfilePictureId string
-}
-
-// NewUser creates and returns a new user with the specified parameters
-func NewUser(Username string,
-            FirstName string,
-            LastName string,
-            Email string,
-            EmailVerified bool,
-            BzProfilePictureId string) User {
-    return User{
-        Username: Username,
-        FirstName: FirstName,
-        LastName: LastName,
-        Email: Email,
-        EmailVerified: EmailVerified,
-        BzProfilePictureId: BzProfilePictureId,
-    }
+    PasswordHash string `json:"-" gorm:"not null"`
 }

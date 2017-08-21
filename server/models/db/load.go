@@ -8,4 +8,6 @@ import (
 // db: GORM database to migrate
 func Load(db *gorm.DB) {
     db.AutoMigrate(&User{})
+    db.AutoMigrate(&Picture{})
+    db.AutoMigrate(&DirectMessage{})
 }
