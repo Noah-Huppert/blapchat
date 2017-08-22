@@ -17,12 +17,12 @@ type Transport struct {
 // method does not determine if two transports are exactly equal. From this use the .Equal() method.
 func (t *Transport) Equivalent(against *Transport) bool {
     // Compare current transport's and provided transport's flattened Is array against each other
-    curFlat := t.Is
-    agFlat := against.Is
+    currentIs := t.Is
+    agIs := against.Is
 
-    for _, curItem := range curFlat {
-        for _, agFlat := range agFlat {
-            if curItem == agFlat {
+    for _, curItem := range currentIs {
+        for _, agItem := range agIs {
+            if curItem == agItem {
                 // If any of the plain transports that represent the current and provided transport match, they are equivalent
                 return true
             }
@@ -37,33 +37,33 @@ func (t *Transport) Equivalent(against *Transport) bool {
 // represent the exact same types, or both be the same "plain" typed transport.
 func (t *Transport) Equal(against *Transport) bool {
     // Compare current and provided transport's flattened forms
-    curFlat := t.Is
-    agFlat := against.Is
+    curIs := t.Is
+    agIs := against.Is
 
     // Simple length check first
-    if len(curFlat) != len(agFlat) {
+    if len(curIs) != len(agIs) {
         return false
     }
 
-    // Build map with all curFlat keys
-    var curFlatMap map[string]bool
-    for _, item := range curFlat {
-        curFlatMap[item] = false
+    // Build map with all curIs keys
+    var curMap map[string]bool
+    for _, item := range curIs {
+        curMap[item] = false
     }
 
-    // Loop through each agFlat item and check curFlatMap
-    for _, agItem := range agFlat {
-        // Check if item exists in curFlatMap
-        if _, ok := curFlatMap[agItem]; ok {
-            curFlatMap[agItem] = true
+    // Loop through each agIs item and check curMap
+    for _, agItem := range agIs {
+        // Check if item exists in curMap
+        if _, ok := curMap[agItem]; ok {
+            curMap[agItem] = true
         } else {
             // If item doesn't exist in map then they aren't equal
             return false
         }
     }
 
-    // Check curFlatMap and make sure all true
-    for _, item := range curFlatMap {
+    // Check curMap and make sure all true
+    for _, item := range curMap {
         if !item {
             // If item is false, wasn't found, not equal
             return false
@@ -78,7 +78,7 @@ func (t *Transport) Equal(against *Transport) bool {
 func NewPlainTransport(Name string) *Transport {
     return &Transport{
         Name: Name,
-        Is: []string,
+        Is: []string{},
     }
 }
 
