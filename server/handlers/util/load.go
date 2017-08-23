@@ -8,7 +8,7 @@ type HandlerLoader interface {
     GetTransport() *Transport
 
     // Load registers a specific EventHandler with the correct backend systems
-    Load(h *EventHandler) error
+    Load(resource string, h *EventHandler) error
 }
 
 // Loaders holds the HandlerLoader interfaces that will be used to register new routes with different transports
@@ -32,7 +32,17 @@ func AddHandler(resource string, h *EventHandler) error {
         resMap[h.GetAction()] = []*EventHandler{}
     }
 
-    actMap := resMap[h.GetAction()]
+    actArray := resMap[h.GetAction()]
 
-    // Check if equivalent
+    // Check for any handlers with equivalent transports
+    for _, handler := range actArray {
+        if handler.Equivilent(h) {
+            return fmt.Errorf("A handler with an equivilent transport type is already registered for this resource and action")
+        }
+    }
+
+    // If none, add
+    actArray = append(actArray, h)
+
+    return nil
 }
