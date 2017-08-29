@@ -6,11 +6,12 @@ import (
     "github.com/jinzhu/gorm"
     _ "github.com/jinzhu/gorm/dialects/postgres"
 
-    "github.com/labstack/echo"
-
     "github.com/Noah-Huppert/blapchat/server/models"
     tables "github.com/Noah-Huppert/blapchat/server/models/db"
-    //"github.com/NaySoftware/go-fcm"
+    "net/http"
+    "github.com/Noah-Huppert/blapchat/server/transports"
+    "os"
+    "github.com/Noah-Huppert/blapchat/server/handlers"
 )
 
 func main() {
@@ -30,14 +31,16 @@ func main() {
 
     tables.Load(db)
 
-    // -- -- FCM
-    //fcmClient := fcm.NewFcmClient(config.FCMServerKey)
-
     // -- -- HTTP
-    e := echo.New()
+    httpMux := http.NewServeMux()
+    httpTransport := transports.NewHttpTransport(httpMux)
+    httpTransport.RegisterHandler(handlers.NewTestHandler())
 
-    err = e.Start(fmt.Sprintf(":%d", config.Port))
-    if err != nil {
-        fmt.Errorf("Error starting http server on port %d, %s", config.Port, err.Error())
+    httpPort := fmt.Sprintf(":%d", config.Port)
+
+    fmt.Printf("Http transport starting on \"%s\"\n", httpPort)
+    if err := http.ListenAndServe(httpPort, httpMux); err != nil {
+        fmt.Printf("Error starting Http transport on \"%s\", error: \"%s\"\n", httpPort, err.Error())
+        os.Exit(1)
     }
 }
