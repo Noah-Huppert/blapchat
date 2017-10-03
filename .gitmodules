@@ -1,0 +1,3 @@
+[submodule "blapchat.wiki"]
+	path = wiki
+	url = git@github.com:Noah-Huppert/blapchat.wiki.git
