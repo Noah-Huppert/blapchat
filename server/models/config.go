@@ -7,41 +7,72 @@ import (
 	"os"
 )
 
-const ENV_KEY string = "APP_ENVIORNMENT"
-const ENV_DEV string = "development"
-const ENV_TEST string = "test"
-const ENV_PROD string = "production"
+// EnvKey holds the name of the environment variable which will hold the
+// application environment.
+//
+// The terms "environment" & "environment variable" are very similar terms used
+// to designate different things:
+//
+//     - environment variable = Variable provided by shell
+//     - environment = where application is running (ex., production, staging, test)
+const EnvKey string = "APP_ENVIORNMENT"
 
-const DEFAULT_CONFIG_PATH string = "./server.config.json"
+// EnvDev holds the environment value to signify the application is running
+// for the purpose of development
+const EnvDev string = "development"
 
-// GetEnv retrieves app environment from environment variable key in ENV_KEY, defaults to development. Returns empty
-// string for error
-func GetEnv() (error, string) {
-	envVal := os.Getenv(ENV_KEY)
+// EnvTest holds the environment value to signify the application is running for
+// the purpose of teting
+const EnvTest string = "test"
+
+// EnvProd holds the environment value to signify the application is running to
+// server production traffic
+const EnvProd string = "production"
+
+// DefaultConfigPath is the path where the server config.json file is located
+// by default.
+const DefaultConfigPath string = "./server.config.json"
+
+// GetEnv retrieves app environment from environment variable key in ENV_KEY,
+// defaults to development. Returns empty string for error.
+func GetEnv() (string, error) {
+	envVal := os.Getenv(EnvKey)
 	if envVal == "" {
-		envVal = ENV_DEV
+		envVal = EnvDev
 	}
 
-	if envVal != ENV_DEV && envVal != ENV_TEST && envVal != ENV_PROD {
+	if envVal != EnvDev && envVal != EnvTest && envVal != EnvProd {
 		return fmt.Errorf("Unknown environment: \"%s\"", envVal), ""
 	}
 
 	return nil, envVal
 }
 
+// Config holds all application configuration information
 type Config struct {
+	// Port is the network port to listen on for requests
 	Port int
 
-	DbHost     string
-	DbUser     string
-	DbPassword string
-	DbName     string
+	// DbHost is the host to access the database at
+	DbHost string
 
+	// DbUser is the username to access the database with
+	DbUser string
+
+	// DbPassword is the password to access the database with
+	DbPassword string
+
+	// DbName is the name of the database to store information in
+	DbName string
+
+	// FCMServerKey is the Firebase Cloud Messaging key to provide for
+	// API authentication
 	FCMServerKey string
 }
 
-// LoadFile loads a specified json file and retrieves Config value for app environmnet
-func LoadConfigFile(path string) (error, *Config) {
+// LoadConfigFile loads a specified json file and retrieves Config value for
+// app environmnet
+func LoadConfigFile(path string) (*Config, error) {
 	// Read file
 	file, e := ioutil.ReadFile(path)
 	if e != nil {
@@ -55,7 +86,7 @@ func LoadConfigFile(path string) (error, *Config) {
 	json.Unmarshal(file, &data)
 
 	// Check app env data exists in file
-	err, env := GetEnv()
+	env, err := GetEnv()
 	if err != nil {
 		return err, nil
 	}

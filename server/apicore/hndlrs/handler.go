@@ -23,6 +23,7 @@ type FnHandler struct {
 	hndlFn HandleFn
 }
 
+// Handle implements the Handler interface for FnHandler
 func (h FnHandler) Handle(event Event) APIResp {
 	return h.hndlFn(event)
 }

@@ -1,3 +1,6 @@
+# System
+nohup.out
+
 # Jetbrains
 *.iml
 .idea

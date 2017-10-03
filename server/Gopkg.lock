@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  branch = "master"
-  name = "github.com/NaySoftware/go-fcm"
-  packages = ["."]
-  revision = "8b8dc5883a3bfd52fd4d296d2ab89aa1b703aed4"
-
-[[projects]]
   name = "github.com/jinzhu/gorm"
   packages = [".","dialects/postgres"]
   revision = "5174cc5c242a728b435ea2be8a2f7f998e15429b"
@@ -76,6 +70,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f03db0a8ca981b81f9a2cd05640f016dead557faacffd14d70ed8ddc58cdd999"
+  inputs-digest = "35b073a0113bd2387346b0e0dec970eb5aaf77eb5e4db830a3e980b4caecb2b3"
   solver-name = "gps-cdcl"
   solver-version = 1

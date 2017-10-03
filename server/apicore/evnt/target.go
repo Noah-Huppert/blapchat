@@ -1,4 +1,4 @@
-package coms
+package evnt
 
 // Target provides information used to determine which action to invoke when an
 // event is received. This information includes:

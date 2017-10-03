@@ -15,7 +15,7 @@ import (
 
 func main() {
 	// Config
-	err, config := models.LoadConfigFile(models.DEFAULT_CONFIG_PATH)
+	config, err := models.LoadConfigFile(models.DefaultConfigPath)
 	if err != nil {
 		fmt.Printf("Error loading settings.config.json, %s", err.Error())
 		return
