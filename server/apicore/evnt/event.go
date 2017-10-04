@@ -13,11 +13,3 @@ type Event struct {
 	// received.
 	Payload interface{}
 }
-
-// Merge returns a new Event which is a combination of a & b:
-//
-// 	a) the Event the method was called on
-//	b) the Event provided as an argument to the method
-func (e Event) Merge(o Event) Event {
-
-}
