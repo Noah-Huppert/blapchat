@@ -44,7 +44,9 @@ type Loader struct {
 
 // Load implements the hndlrs.Loader.Load function for Loader
 func (l Loader) Load(r Registry) error {
-	var actionLoaderErrs []error = []error{}
+	// actionLoaderErrs holds any errors which may occurs while loading
+	// the provided action interfaces
+	actionLoaderErrs := []error{}
 
 	// Creator
 	if l.Creator != nil {
