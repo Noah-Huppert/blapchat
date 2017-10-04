@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
+
+[[projects]]
   name = "github.com/jinzhu/gorm"
   packages = [".","dialects/postgres"]
   revision = "5174cc5c242a728b435ea2be8a2f7f998e15429b"
@@ -44,6 +50,24 @@
   version = "v0.0.2"
 
 [[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/stretchr/objx"
+  packages = ["."]
+  revision = "1a9d0bb9f541897e62256577b352fdbc1fb4fd94"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = [".","assert","http","mock"]
+  revision = "69483b4bd14f5845b5a1e55bca19e954e827f1d0"
+  version = "v1.1.4"
+
+[[projects]]
   branch = "master"
   name = "github.com/valyala/bytebufferpool"
   packages = ["."]
@@ -70,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "35b073a0113bd2387346b0e0dec970eb5aaf77eb5e4db830a3e980b4caecb2b3"
+  inputs-digest = "155098f0c64bfe6f0992a69f82340feac9f37507292206fa6f66d28e7eb077df"
   solver-name = "gps-cdcl"
   solver-version = 1

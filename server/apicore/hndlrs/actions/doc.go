@@ -19,7 +19,7 @@ This allows one to register Handlers in a much simpler and expressive way. By
 simply implementing the interfaces of the actions you wish your resource to
 provide.
 
-A Loader, named the ResourceLoader, can be used to automatically register any
+A Loader, named the actions.Loader, can be used to automatically register any
 Creators, Getters, Updaters, and / or Deleters implemented by a type, with a
 Registry.
 */
