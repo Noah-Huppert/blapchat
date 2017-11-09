@@ -7,26 +7,13 @@ import "context"
 // HTTP or XMPP).
 type Communicator interface {
 	// Communicate sets up a transport method to begin receiving and responding
-	// to events. It is expected to block execution while it is receiving
-	// events.
+	// to events.
 	//
-	// It should use the Invoker provider by the `invoker` argument to the run
-	// the appropriate actions when it receives events. Results from the Invoker
-	// should then be sent as responses.
+	// `ctx` can be cancelled to stop the communication process gracefully.
 	//
-	// It returns a channel which will receive exactly 1 `error` to signify
-	// Start is complete. This will be `nil` on success. Or the error if
-	// one occurred.
-	Communicate(invoker Invoker) <-chan error
-
-	// Stop attempts to shut down a transport. So it will no longer send or
-	// receive messages.
+	// `invoker` will be used to run the appropriate handler based on the
+	// received Event.
 	//
-	// All requests and responses are expected to be done before `ctx`
-	// times out.
-	//
-	// A channel is returned which will receive exactly 1 `error` to
-	// signify Stop is complete. This will be `nil` on success. And an
-	// error if one occurs.
-	Stop(ctx context.Context) <-chan error
+	// An error is returned, or nil if communicator was stopped gracefully.
+	Communicate(ctx context.Context, invoker Invoker) error
 }
