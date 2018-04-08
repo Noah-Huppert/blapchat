@@ -11,7 +11,7 @@ type Server interface {
 	// messages into Events.
 	//
 	// This allows the same handler logic to be used regardless of the 
-	// message transport method.
+	// message transport method
 	Communicator Communicator
 
 	// Invoker is the interface used to run the correct handler for  
@@ -30,14 +30,6 @@ type Server interface {
 //
 // It returns an error, or nil if the server is stopped gracefully. 
 func (s Server) Start(ctx context.Context) error {
-	for {
-		select {
-		case <-ctx.Done():
-			return ctx.Err()
-		default:
-			s.Communicate(ctx, s.Invoker)
-		}
-	}
-
-	return eChan
+	go s.Communicate(ctx, s.Invoker)
+	return nil
 }
